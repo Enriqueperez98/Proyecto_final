@@ -8,6 +8,8 @@ public class Paciente extends Persona {
 		super(nombre, cedula, telefono, correo);
 		// TODO Auto-generated constructor stub
 	}
+	
+	//indice de masa coporal
 	private String sexo;
 	private float peso;
 	private String tiposangre;
@@ -15,11 +17,13 @@ public class Paciente extends Persona {
 	private String seguro;
 	private String fechanacimiento;
 	private float estatura;
+	private String contactoemer;
+	private String micodhistorial;
 	ArrayList <Consulta> misConsultas;
 	ArrayList <Vacuna> misVacunas;
 	public Paciente(String nombre, String cedula, String telefono, String correo, String sexo, float peso,
 			String tiposangre, int edad, String seguro, String fechanacimiento, ArrayList<Consulta> misConsultas,
-			ArrayList<Vacuna> misVacunas,float estatura) {
+			ArrayList<Vacuna> misVacunas,float estatura, String contactoemer,String micodhistorial) {
 		super(nombre, cedula, telefono, correo);
 		this.sexo = sexo;
 		this.peso = peso;
@@ -83,6 +87,18 @@ public class Paciente extends Persona {
 	}
 	public void setEstatura(float estatura) {
 		this.estatura = estatura;
+	}
+	public String getContactoemer() {
+		return contactoemer;
+	}
+	public void setContactoemer(String contactoemer) {
+		this.contactoemer = contactoemer;
+	}
+	public String getMicodhistorial() {
+		return micodhistorial;
+	}
+	public void setMicodhistorial(String micodhistorial) {
+		this.micodhistorial = micodhistorial;
 	}
 	
 	

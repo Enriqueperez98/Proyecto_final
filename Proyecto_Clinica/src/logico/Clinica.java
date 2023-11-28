@@ -159,10 +159,10 @@ public class Clinica {
 		Enfermedad virus = null;
 		boolean encontrado = false;
 		while(i<lasEnfermedades.size() && !encontrado) {
-			if(lasEnfermedades.get(i).getNombre().equalsIgnoreCase(nombre)) {
+			/*if(lasEnfermedades.get(i).getNombre().equalsIgnoreCase(nombre)) {
 				virus = lasEnfermedades.get(i);
 				encontrado = true;
-			}
+			}*/
 		i++;
 		}
 		return virus;
