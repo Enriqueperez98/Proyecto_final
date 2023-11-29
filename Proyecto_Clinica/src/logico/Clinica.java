@@ -1,4 +1,4 @@
-package logico;
+package Logico;
 
 import java.util.ArrayList;
 
@@ -93,7 +93,7 @@ public class Clinica {
 	}
 	
 	public void addVacuna(Vacuna vac) {
-		misVacunas.add(vac);
+		lasVacunas.add(vac);
 		codVacuna++;
 	}
 	
@@ -144,11 +144,11 @@ public class Clinica {
 		int i = 0;
 		Vacuna inyeccion = null;
 		boolean encontrado = false;
-		while(i<misVacunas.size() && !encontrado) {
-			/*if(misVacunas.get(i).getCodigo().equalsIgnoreCase(cod)) {
-				inyeccion = misVacunas.get(i);
+		while(i<lasVacunas.size() && !encontrado) {
+			if(lasVacunas.get(i).getCodigo().equalsIgnoreCase(cod)) {
+				inyeccion = lasVacunas.get(i);
 				encontrado = true;
-			}*/
+			}
 		i++;
 		}
 		return inyeccion;
@@ -159,15 +159,19 @@ public class Clinica {
 		Enfermedad virus = null;
 		boolean encontrado = false;
 		while(i<lasEnfermedades.size() && !encontrado) {
-			/*if(lasEnfermedades.get(i).getNombre().equalsIgnoreCase(nombre)) {
+			if(lasEnfermedades.get(i).getNombre().equalsIgnoreCase(nombre)) {
 				virus = lasEnfermedades.get(i);
 				encontrado = true;
-			}*/
+			}
 		i++;
 		}
 		return virus;
 	}
 	
-	
+	public ArrayList<Persona> getPacientesVivienda(String codigo) {
+		Vivienda hogar = obtenerViviendaByCode(codigo);
+		ArrayList<Persona> residentes = hogar.getMisPersonas();
+		return residentes; 
+	}
 	
 }
