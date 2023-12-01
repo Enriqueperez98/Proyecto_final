@@ -11,6 +11,7 @@ public class Historial_Clinica {
 	private String [] medicacion;
 	private String [] genetica;
 	private String [] analisis;
+	private double indicecorpo;
 	private int hospitalizacion;
 	public Historial_Clinica(ArrayList<Consulta> misconsultas, String codhistorial, String fechahistorial,
 			String[] sirugiashis, String[] alergias, String[] medicacion, String[] genetica, String[] analisis,

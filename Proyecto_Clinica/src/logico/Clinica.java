@@ -1,6 +1,8 @@
-package Logico;
+package logico;
 
 import java.util.ArrayList;
+
+
 
 public class Clinica {
 
@@ -12,6 +14,7 @@ public class Clinica {
 	public static int codVivienda = 1;
 	public static int codCita = 1;
 	public static int codVacuna = 1;
+	private static Clinica clinica = null;
 	
 	public Clinica() {
 		super();
@@ -20,6 +23,12 @@ public class Clinica {
 		this.lasCitas = new ArrayList<Cita>();
 		this.lasEnfermedades = new ArrayList<Enfermedad>();
 		this.misVacunas = new ArrayList<Vacuna>();
+	}
+	public static Clinica getInstance(){
+		if(clinica == null) {
+			clinica = new Clinica();
+		}
+		return clinica;
 	}
 
 	public ArrayList<Vivienda> getLasViviendas() {
@@ -93,85 +102,92 @@ public class Clinica {
 	}
 	
 	public void addVacuna(Vacuna vac) {
-		lasVacunas.add(vac);
+		misVacunas.add(vac);
 		codVacuna++;
 	}
 	
 	
-	public Persona obtenerPersonaById(String id) {
-		int i = 0;
-		Persona personaje = null;
-		boolean encontrado = false;
-		while(i<lasPersonas.size() && !encontrado) {
-			if(lasPersonas.get(i).getCedula().equalsIgnoreCase(id)) {
-				personaje = lasPersonas.get(i);
-				encontrado = true;
+	public Persona obtenerPacienteById(String id) {
+		
+		for (Persona lasPersonas: lasPersonas) {
+			if(lasPersonas.getCedula().equals(id) && lasPersonas instanceof Paciente) {			
+				return lasPersonas;
 			}
-		i++;
 		}
-		return personaje;
+		
+		return null;
+	}
+	
+	public void eliminarpaciente(Paciente pa) {
+	    lasPersonas.remove(pa);
+	}
+	
+	public int buscarindexpaciente(String cedu) {
+		int index = -1;
+		boolean encontrar = false;
+		int i= 0;
+		while(!encontrar && i<lasPersonas.size()) {
+			if(lasPersonas.get(i).getCedula().equalsIgnoreCase(cedu)) {
+				encontrar = true;
+				index =i;
+			}
+			i++;
+		}
+		return index;
+	}
+	public void actualizarpaciente(Paciente pa) {
+		int indice = buscarindexpaciente(pa.getCedula());
+		lasPersonas.set(indice, pa);
+	}
+	
+public Persona obtenerDoctorById(String id) {
+		
+		for (Persona lasPersonas: lasPersonas) {
+			if(((Doctor)lasPersonas).getCoddoctor().equals(id)) {
+				
+				return lasPersonas;
+			}
+		}
+		
+		return null;
 	}
 	
 	public Vivienda obtenerViviendaByCode(String cod) {
-		int i = 0;
-		Vivienda propiedad = null;
-		boolean encontrado = false;
-		while(i<lasViviendas.size() && !encontrado) {
-			if(lasViviendas.get(i).getCodigo().equalsIgnoreCase(cod)) {
-				propiedad = lasViviendas.get(i);
-				encontrado = true;
+		for(Vivienda lasViviendas: lasViviendas) {
+			if(lasViviendas.getCodigo().equals(cod)) {
+				return lasViviendas;
 			}
-		i++;
 		}
-		return propiedad;
+		return null;
 	}
 	
 	public Cita obtenerCitaByCode(String cod) {
-		int i = 0;
-		Cita sesion = null;
-		boolean encontrado = false;
-		while(i<lasCitas.size() && !encontrado) {
-			if(lasCitas.get(i).getCodigo().equalsIgnoreCase(cod)) {
-				sesion = lasCitas.get(i);
-				encontrado = true;
+		for(Cita lasCitas: lasCitas) {
+			if(lasCitas.getCodigo().equals(cod)) {
+				return lasCitas;
 			}
-		i++;
 		}
-		return sesion;
+		return null;
 	}
 	
 	public Vacuna obtenerVacunaByCode(String cod) {
-		int i = 0;
-		Vacuna inyeccion = null;
-		boolean encontrado = false;
-		while(i<lasVacunas.size() && !encontrado) {
-			if(lasVacunas.get(i).getCodigo().equalsIgnoreCase(cod)) {
-				inyeccion = lasVacunas.get(i);
-				encontrado = true;
+		for(Vacuna misVacunas: misVacunas) {
+			if(misVacunas.getCodigo().equals(cod)) {
+				return misVacunas;
 			}
-		i++;
 		}
-		return inyeccion;
+		return null;
 	}
 	
-	public Enfermedad buscarEnfermedad(String nombre) {
-		int i = 0;
-		Enfermedad virus = null;
-		boolean encontrado = false;
-		while(i<lasEnfermedades.size() && !encontrado) {
-			if(lasEnfermedades.get(i).getNombre().equalsIgnoreCase(nombre)) {
-				virus = lasEnfermedades.get(i);
-				encontrado = true;
+	public Enfermedad buscarEnfermedad(String codigo) {
+		for (Enfermedad lasEnfermedades: lasEnfermedades) {
+			if(lasEnfermedades.getCodenferme().equals(codigo)) {
+				return lasEnfermedades;
 			}
-		i++;
 		}
-		return virus;
+		return null;
 	}
 	
-	public ArrayList<Persona> getPacientesVivienda(String codigo) {
-		Vivienda hogar = obtenerViviendaByCode(codigo);
-		ArrayList<Persona> residentes = hogar.getMisPersonas();
-		return residentes; 
-	}
+	
 	
 }

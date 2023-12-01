@@ -1,8 +1,8 @@
-package Logico;
+package logico;
 
 import java.util.ArrayList;
 
-import Logico.Enfermedad;
+
 
 public class Vacuna {
 
