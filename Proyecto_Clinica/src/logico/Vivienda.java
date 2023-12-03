@@ -52,5 +52,24 @@ public class Vivienda {
 	public void addPersona(Persona per) {
 		misPersonas.add(per);
 	}
+	public int buscarbyindice(String ide) {
+		int index = -1;
+		boolean encontrarp = false;
+		int i = 0;
+		while(!encontrarp && i<misPersonas.size()) {
+			if (misPersonas.get(i).getCedula().equalsIgnoreCase(ide)) {
+				encontrarp = true;
+				index = i;
+			}
+			i++;
+		}
+		return index;
+	}
+	public void actualizarperson(Persona pv) {
+		int indic = buscarbyindice(pv.getCedula());
+		misPersonas.set(indic, pv);
+	}
+	
+	
 	
 }

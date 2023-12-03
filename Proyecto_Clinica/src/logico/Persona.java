@@ -5,6 +5,7 @@ public abstract class Persona {
 	protected String cedula;
 	protected String telefono;
 	protected String correo;
+	protected String direccion;
 	public Persona(String nombre, String cedula, String telefono, String correo) {
 		super();
 		this.nombre = nombre;

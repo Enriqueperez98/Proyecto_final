@@ -16,6 +16,7 @@ public class Paciente extends Persona {
 	private double estatura;
 	private String contactoemer;
 	private String micodhistorial;
+	//private double indicecorpo;
 	ArrayList <Consulta> misConsultas;
 	ArrayList <Vacuna> misVacunas;
 	public Paciente(String nombre, String cedula, String telefono, String correo, String sexo, double peso,
@@ -87,6 +88,10 @@ public class Paciente extends Persona {
 		this.micodhistorial = micodhistorial;
 	}
 	
-	
+	public double calcularimc() {
+		double imc = 0;
+		imc = peso/Math.pow(estatura, estatura);
+		return imc;
+	}
 	
 }
