@@ -1,6 +1,7 @@
 package logico;
 
 import java.util.ArrayList;
+import java.util.Date;
 
 public class Paciente extends Persona {
 
@@ -15,10 +16,11 @@ public class Paciente extends Persona {
 	private String fechanacimiento;
 	private double estatura;
 	private String contactoemer;
-	private String micodhistorial;
 	//private double indicecorpo;
-	ArrayList <Consulta> misConsultas;
-	ArrayList <Vacuna> misVacunas;
+	private ArrayList <Consulta_Nueva> misConsultas;
+	private ArrayList <Vacuna> misVacunas;
+	private Historial_Clinica miHistorial;
+	
 	public Paciente(String nombre, String cedula, String telefono, String correo, String sexo, double peso,
 			String tiposangre, int edad, String seguro, String fechanacimiento, double estatura, String contactoemer,
 			String micodhistorial) {
@@ -31,8 +33,11 @@ public class Paciente extends Persona {
 		this.fechanacimiento = fechanacimiento;
 		this.estatura = estatura;
 		this.contactoemer = contactoemer;
-		this.micodhistorial = micodhistorial;
+		this.misConsultas = new ArrayList<Consulta_Nueva>();
+		this.misVacunas = new ArrayList<Vacuna>();
+		this.miHistorial = null;
 	}
+	
 	public String getSexo() {
 		return sexo;
 	}
@@ -81,17 +86,25 @@ public class Paciente extends Persona {
 	public void setContactoemer(String contactoemer) {
 		this.contactoemer = contactoemer;
 	}
-	public String getMicodhistorial() {
-		return micodhistorial;
-	}
-	public void setMicodhistorial(String micodhistorial) {
-		this.micodhistorial = micodhistorial;
-	}
 	
 	public double calcularimc() {
 		double imc = 0;
 		imc = peso/Math.pow(estatura, estatura);
 		return imc;
+	}
+	
+	public void newHistorial() {
+		String resumen = "Nombre: "+nombre+"\nCedula: "+cedula+"\nTelefono: "+telefono+
+				"Contacto de emergencia: "+contactoemer;
+		int i = 0;
+		for(Consulta_Nueva laConsulta : misConsultas) {
+			resumen += "\n\n\nConsulta #"+i+"\nFecha: "+laConsulta.getFecha()+"\nHora: "+laConsulta.getHora()+
+			"\n\nMotivo: "+laConsulta.getMotivo()+"\n\nDiagnostico: "+laConsulta.getDiagnostico()+
+			"\n\nObservaciones: "+laConsulta.getObservaciones();
+			i++;
+		}
+		
+		miHistorial = new Historial_Clinica(misConsultas, nombre, cedula, telefono, contactoemer, new Date(), resumen);
 	}
 	
 }

@@ -3,7 +3,7 @@ package logico;
 import java.util.ArrayList;
 
 public class Consulta {
-    ArrayList<String> observaciones;
+    private String observaciones;
     private String fecha;
     private String hora;
     private String diagnostico;
@@ -13,13 +13,13 @@ public class Consulta {
     private String tipoconsulta;
     private String codconsulta;
     ArrayList <Enfermedad> misEnfermedades;
-
-
-public ArrayList<String> getObservaciones() {
-	return observaciones;
+    
+    
+public String getObservaciones() {
+		return observaciones;
 }
-public void setObservaciones(ArrayList<String> observaciones) {
-	this.observaciones = observaciones;
+public void setObservaciones(String observaciones) {
+		this.observaciones = observaciones;
 }
 public String getFecha() {
 	return fecha;
@@ -75,11 +75,11 @@ public ArrayList<Enfermedad> getMisEnfermedades() {
 public void setMisEnfermedades(ArrayList<Enfermedad> misEnfermedades) {
 	this.misEnfermedades = misEnfermedades;
 }
-public Consulta(ArrayList<String> observaciones, String fecha, String hora, String diagnostico, String motivo,
+public Consulta(String fecha, String hora, String diagnostico, String motivo,
 		String representante, String contactrep, String tipoconsulta, String codconsulta,
 		ArrayList<Enfermedad> misEnfermedades) {
 	super();
-	this.observaciones = observaciones;
+	this.observaciones = null;
 	this.fecha = fecha;
 	this.hora = hora;
 	this.diagnostico = diagnostico;
@@ -88,7 +88,7 @@ public Consulta(ArrayList<String> observaciones, String fecha, String hora, Stri
 	this.contactrep = contactrep;
 	this.tipoconsulta = tipoconsulta;
 	this.codconsulta = codconsulta;
-	this.misEnfermedades = misEnfermedades;
+	this.misEnfermedades = new ArrayList<Enfermedad>();
 }
 
   
@@ -98,6 +98,7 @@ public void agregarenfermedades(Enfermedad ei) {
 public void eliminarenfermedades(Enfermedad ei) {
 	misEnfermedades.remove(ei);
 }
+
 public int indiceenfermedad(String cod) {
 	int indice = -1;
 	boolean encontrar = false;
@@ -111,23 +112,8 @@ public int indiceenfermedad(String cod) {
 	}
 	return indice;
 }
-public void actualizarenfermedades(Enfermedad en) {
-	int ind = indiceenfermedad(en.getCodenferme());
-	misEnfermedades.set(ind, en);
-}
-public void agregarobservaciones(String comentario) {
-  observaciones.add(comentario);
-}
-public void borrarobservaciones(String comentario) {
-	observaciones.remove(comentario);
-}
 
-public String registrocomentarios() {
-	for(String observaciones: observaciones) {
-		return observaciones;
-	}
-	return null;
-}
+
     
 
 }
