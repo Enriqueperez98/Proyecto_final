@@ -2,9 +2,11 @@ package logico;
 
 import java.util.ArrayList;
 
-
-
 public class Clinica {
+
+	public static int getCodEnferme() {
+		return codEnferme;
+	}
 
 	private ArrayList<Vivienda>lasViviendas;
 	private ArrayList<Persona>lasPersonas;
@@ -14,6 +16,7 @@ public class Clinica {
 	public static int codVivienda = 1;
 	public static int codCita = 1;
 	public static int codVacuna = 1;
+	public static int codEnferme = 1;
 	private static Clinica clinica = null;
 	
 	public Clinica() {
@@ -99,6 +102,7 @@ public class Clinica {
 	
 	public void addEnfermedad(Enfermedad enfe) {
 		lasEnfermedades.add(enfe);
+		codEnferme++;
 	}
 	
 	public void addVacuna(Vacuna vac) {
@@ -140,7 +144,7 @@ public class Clinica {
 		lasPersonas.set(indice, pa);
 	}
 	
-public Persona obtenerDoctorById(String id) {
+	public Persona obtenerDoctorById(String id) {
 		
 		for (Persona lasPersonas: lasPersonas) {
 			if(((Doctor)lasPersonas).getCoddoctor().equals(id)) {
@@ -180,12 +184,30 @@ public Persona obtenerDoctorById(String id) {
 	}
 	
 	public Enfermedad buscarEnfermedad(String codigo) {
-		for (Enfermedad lasEnfermedades: lasEnfermedades) {
-			if(lasEnfermedades.getCodenferme().equals(codigo)) {
-				return lasEnfermedades;
+		for (Enfermedad auxEnfe: lasEnfermedades) {
+			if(auxEnfe.getCodEnferme().equals(codigo)) {
+				return auxEnfe;
 			}
 		}
 		return null;
+	}
+	
+	public int BuscarIndexbyEnfermedad(String codigo) {
+		int index = -1;
+		for (Enfermedad auxEnfe: lasEnfermedades) {
+			index++;
+			if(auxEnfe.getCodEnferme().equals(codigo)) {
+				return index;
+			}
+		}
+		index = -1;
+		return index;
+	}
+	
+	public void modificarEnfermedad(Enfermedad enfe) {
+		int aux = -1;
+		aux = BuscarIndexbyEnfermedad(enfe.getCodEnferme());
+		lasEnfermedades.set(aux, enfe);	
 	}
 	
 	
