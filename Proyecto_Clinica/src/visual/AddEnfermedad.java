@@ -1,4 +1,4 @@
-package Visual;
+package visual;
 
 import java.awt.BorderLayout;
 import java.awt.FlowLayout;
@@ -8,8 +8,8 @@ import javax.swing.JDialog;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 
-import Logico.Clinica;
-import Logico.Enfermedad;
+import logico.Clinica;
+import logico.Enfermedad;
 
 import javax.swing.JTextField;
 import javax.swing.JTextPane;
@@ -46,7 +46,7 @@ public class AddEnfermedad extends JDialog {
 		if(enfe == null) {
 			setTitle("Registrar Enfermedad");
 		}else {
-			setTitle("Modificar Datos Enfermedad (EV-"+enfe.getCodEnferme());
+			setTitle("Modificar Datos Enfermedad (EV-"+enfe.getCodenferme());
 		}
 		
 		setBounds(100, 100, 450, 300);
@@ -91,10 +91,9 @@ public class AddEnfermedad extends JDialog {
 				JButton RegistrarButton = new JButton("Registrar");
 				RegistrarButton.addActionListener(new ActionListener() {
 					public void actionPerformed(ActionEvent arg0) {
-						Enfermedad enfermed = new Enfermedad(txtNombre.getText(), txtSintomas.getText(),
-								txtCodigo.getText());
+						Enfermedad enfermed = new Enfermedad(txtNombre.getText(), txtSintomas.getText(),txtCodigo.getText());
 						Clinica.getInstance().addEnfermedad(enfe);
-						JOptionPane.showMessageDialog(null, "Registro satisfactorio", "Información", JOptionPane.INFORMATION_MESSAGE);
+						JOptionPane.showMessageDialog(null, "Registro satisfactorio", "Informaciï¿½n", JOptionPane.INFORMATION_MESSAGE);
 						dispose();
 					}
 					

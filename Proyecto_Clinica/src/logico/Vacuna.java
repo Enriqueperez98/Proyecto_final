@@ -1,11 +1,16 @@
 package logico;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 
 
 
-public class Vacuna {
+public class Vacuna implements Serializable{
 
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 5792009556295932046L;
 	private String nombre;
 	private String codigo;
 	ArrayList<Enfermedad> misEnfermadades;
@@ -41,7 +46,7 @@ public class Vacuna {
 		this.misEnfermadades = misEnfermadades;
 	}
 	
-	void addEnfermedad(Enfermedad enfe) {
+	public void addEnfermedad(Enfermedad enfe) {
 		misEnfermadades.add(enfe);
 	}
 	

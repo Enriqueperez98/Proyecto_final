@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.Date;
 
 public class Historial_Clinica {
-	private ArrayList<Consulta_Nueva> misconsultas;
+	private ArrayList<Consulta> misconsultas;
 	private String nombrePaciente;
 	private String cedula;
 	private String telefono;
@@ -12,7 +12,7 @@ public class Historial_Clinica {
 	private Date FechaHistorial;
 	private String resumen;
 	
-	public Historial_Clinica(ArrayList<Consulta_Nueva> misconsultas, String nombrePaciente, String cedula, String telefono,
+	public Historial_Clinica(ArrayList<Consulta> misconsultas, String nombrePaciente, String cedula, String telefono,
 			String contactEmergency, Date fechaHistorial, String resumen) {
 		super();
 		this.misconsultas = misconsultas;
@@ -24,11 +24,11 @@ public class Historial_Clinica {
 		this.resumen = resumen;
 	}
 
-	public ArrayList<Consulta_Nueva> getMisconsultas() {
+	public ArrayList<Consulta> getMisconsultas() {
 		return misconsultas;
 	}
 
-	public void setMisconsultas(ArrayList<Consulta_Nueva> misconsultas) {
+	public void setMisconsultas(ArrayList<Consulta> misconsultas) {
 		this.misconsultas = misconsultas;
 	}
 

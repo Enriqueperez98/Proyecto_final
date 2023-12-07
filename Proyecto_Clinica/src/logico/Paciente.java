@@ -17,7 +17,7 @@ public class Paciente extends Persona {
 	private double estatura;
 	private String contactoemer;
 	//private double indicecorpo;
-	private ArrayList <Consulta_Nueva> misConsultas;
+	private ArrayList <Consulta> misConsultas;
 	private ArrayList <Vacuna> misVacunas;
 	private Historial_Clinica miHistorial;
 	
@@ -33,7 +33,7 @@ public class Paciente extends Persona {
 		this.fechanacimiento = fechanacimiento;
 		this.estatura = estatura;
 		this.contactoemer = contactoemer;
-		this.misConsultas = new ArrayList<Consulta_Nueva>();
+		this.misConsultas = new ArrayList<Consulta>();
 		this.misVacunas = new ArrayList<Vacuna>();
 		this.miHistorial = null;
 	}
@@ -97,7 +97,7 @@ public class Paciente extends Persona {
 		String resumen = "Nombre: "+nombre+"\nCedula: "+cedula+"\nTelefono: "+telefono+
 				"Contacto de emergencia: "+contactoemer;
 		int i = 0;
-		for(Consulta_Nueva laConsulta : misConsultas) {
+		for(Consulta laConsulta : misConsultas) {
 			resumen += "\n\n\nConsulta #"+i+"\nFecha: "+laConsulta.getFecha()+"\nHora: "+laConsulta.getHora()+
 			"\n\nMotivo: "+laConsulta.getMotivo()+"\n\nDiagnostico: "+laConsulta.getDiagnostico()+
 			"\n\nObservaciones: "+laConsulta.getObservaciones();
@@ -107,4 +107,5 @@ public class Paciente extends Persona {
 		miHistorial = new Historial_Clinica(misConsultas, nombre, cedula, telefono, contactoemer, new Date(), resumen);
 	}
 	
+
 }

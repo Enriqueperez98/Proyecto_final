@@ -158,7 +158,7 @@ public class Clinica {
 	
 	public Vivienda obtenerViviendaByCode(String cod) {
 		for(Vivienda lasViviendas: lasViviendas) {
-			if(lasViviendas.getCodigo().equals(cod)) {
+			if(lasViviendas.getIdcasa().equals(cod)) {
 				return lasViviendas;
 			}
 		}
@@ -185,7 +185,7 @@ public class Clinica {
 	
 	public Enfermedad buscarEnfermedad(String codigo) {
 		for (Enfermedad auxEnfe: lasEnfermedades) {
-			if(auxEnfe.getCodEnferme().equals(codigo)) {
+			if(auxEnfe.getCodenferme().equals(codigo)) {
 				return auxEnfe;
 			}
 		}
@@ -196,7 +196,7 @@ public class Clinica {
 		int index = -1;
 		for (Enfermedad auxEnfe: lasEnfermedades) {
 			index++;
-			if(auxEnfe.getCodEnferme().equals(codigo)) {
+			if(auxEnfe.getCodenferme().equals(codigo)) {
 				return index;
 			}
 		}
@@ -206,7 +206,7 @@ public class Clinica {
 	
 	public void modificarEnfermedad(Enfermedad enfe) {
 		int aux = -1;
-		aux = BuscarIndexbyEnfermedad(enfe.getCodEnferme());
+		aux = BuscarIndexbyEnfermedad(enfe.getCodenferme());
 		lasEnfermedades.set(aux, enfe);	
 	}
 	

@@ -1,7 +1,13 @@
  package logico;
 
-public class Cita {
+import java.io.Serializable;
 
+public class Cita implements Serializable{
+
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = -1629995673712903935L;
 	private String codigo;
 	private Persona elPaciente;
 	private Doctor elDoctor;

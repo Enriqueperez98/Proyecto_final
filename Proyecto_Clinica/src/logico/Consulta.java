@@ -113,7 +113,10 @@ public int indiceenfermedad(String cod) {
 	return indice;
 }
 
-
+public void actualizarenfermedades(Enfermedad en) {
+	int ind = indiceenfermedad(en.getCodenferme());
+	misEnfermedades.set(ind, en);
+}
     
 
 }

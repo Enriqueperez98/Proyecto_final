@@ -1,4 +1,4 @@
-package Visual;
+package visual;
 
 import java.awt.BorderLayout;
 import java.awt.FlowLayout;
@@ -9,9 +9,9 @@ import javax.swing.JDialog;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 
-import Logico.Clinica;
-import Logico.Enfermedad;
-import Logico.Vacuna;
+import logico.Clinica;
+import logico.Enfermedad;
+import logico.Vacuna;
 
 import javax.swing.JLabel;
 import javax.swing.JTextField;
@@ -189,11 +189,11 @@ public class AddVacuna extends JDialog {
 						Vacuna vax = new Vacuna(txtNombre.getText(), txtCodigo.getText());
 						for(int i = 0; i < select.size(); i++) {
 							String codEnf = select.get(i).substring(0, (select.get(i).indexOf(":")-1));
-							Enfermedad enf = Clinica.getInstance().buscarEnfermedadbyCode(codEnf);
+							Enfermedad enf = Clinica.getInstance().buscarEnfermedad(codEnf);
 							vax.addEnfermedad(enf);
 						 }
 						Clinica.getInstance().addVacuna(vax);
-						JOptionPane.showMessageDialog(null, "Registro satisfactorio", "Información", JOptionPane.INFORMATION_MESSAGE);
+						JOptionPane.showMessageDialog(null, "Registro satisfactorio", "Informaciï¿½n", JOptionPane.INFORMATION_MESSAGE);
 					}
 				});
 				btnRegistrar.setActionCommand("OK");
@@ -224,7 +224,7 @@ public class AddVacuna extends JDialog {
 		enfermDisponible.removeAllElements();
 		String fill = "";
 		for (int i = 0; i < Clinica.getInstance().getLasEnfermedades().size(); i++) {
-			fill = Clinica.getInstance().getLasEnfermedades().get(i).getCodEnferme()+" : "+Clinica.getInstance().getLasEnfermedades().get(i).getNombre();
+			fill = Clinica.getInstance().getLasEnfermedades().get(i).getCodenferme()+" : "+Clinica.getInstance().getLasEnfermedades().get(i).getNombre();
 			disponible.add(fill);
 			enfermDisponible.addElement(fill);
 		}
