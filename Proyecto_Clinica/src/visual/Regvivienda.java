@@ -134,6 +134,7 @@ public class Regvivienda extends JDialog {
 						cbxtipo.getSelectedItem().toString());
 						
 						Clinica.getInstance().addVivienda(vi);
+						Clinica.getInstance().guardarviviendasfile();
 						JOptionPane.showMessageDialog(null, "Completado con exito", "Resgistro", JOptionPane.INFORMATION_MESSAGE);
 						clean();
 					}

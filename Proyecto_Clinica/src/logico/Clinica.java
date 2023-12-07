@@ -1,5 +1,10 @@
 package logico;
 
+import java.io.FileInputStream;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
 import java.util.ArrayList;
 
 public class Clinica {
@@ -210,6 +215,149 @@ public class Clinica {
 		lasEnfermedades.set(aux, enfe);	
 	}
 	
+	public void guardarpersonasfile(){
+        String personas = "laspersonas.dat";
+        
+		try (ObjectOutputStream outputStream = new ObjectOutputStream(new FileOutputStream(personas))){
+			outputStream.writeObject(lasPersonas);
+			System.out.println("Arralist saved to file: "+personas);
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}
 	
+	public Persona buscarpersonasfile() {
+		String personas = "laspersonas.dat";
+		
+		try(ObjectInputStream inputStream = new ObjectInputStream(new FileInputStream(personas))){
+			@SuppressWarnings("unchecked")
+			ArrayList<Persona> personlist = (ArrayList<Persona>) inputStream.readObject();
+			for(Persona per: personlist) {
+				System.out.println("Name: "+ per.getNombre());
+				return per;
+			}
+		}
+		catch (IOException | ClassNotFoundException e) {
+            e.printStackTrace();
+        }
+		return null;
+	}
 	
+	public void guardarviviendasfile(){
+        String viviendas = "lasviviendas.dat";
+        
+		try (ObjectOutputStream outputStream = new ObjectOutputStream(new FileOutputStream(viviendas))){
+			outputStream.writeObject(lasViviendas);
+			//System.out.println("Arralist saved to file: "+personas);
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}
+	
+	public Vivienda buscarviviendafile(){
+		String viviendas = "lasviviendas.dat";
+		
+		try(ObjectInputStream inputStream = new ObjectInputStream(new FileInputStream(viviendas))){
+			@SuppressWarnings("unchecked")
+			ArrayList<Vivienda> viviendalist = (ArrayList<Vivienda>) inputStream.readObject();
+			for(Vivienda vi: viviendalist) {
+				//System.out.println("Name: "+ per.getNombre());
+				return vi;
+			}
+		}
+		catch (IOException | ClassNotFoundException e) {
+            e.printStackTrace();
+        }
+		return null;
+	}
+	
+	public void guardarcitafile(){
+        String citas = "lascitas.dat";
+        
+		try (ObjectOutputStream outputStream = new ObjectOutputStream(new FileOutputStream(citas))){
+			outputStream.writeObject(lasCitas);
+			//System.out.println("Arralist saved to file: "+personas);
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}
+	
+	public Cita buscarcitafile(){
+		String citas = "lascitas.dat";
+		
+		try(ObjectInputStream inputStream = new ObjectInputStream(new FileInputStream(citas))){
+			@SuppressWarnings("unchecked")
+			ArrayList<Cita> citalist = (ArrayList<Cita>) inputStream.readObject();
+			for(Cita ci: citalist) {
+				//System.out.println("Name: "+ per.getNombre());
+				return ci;
+			}
+		}
+		catch (IOException | ClassNotFoundException e) {
+            e.printStackTrace();
+        }
+		return null;
+	}
+	
+	public void guardarenfermedadfile(){
+        String enfermedades = "lasenfermedades.dat";
+        
+		try (ObjectOutputStream outputStream = new ObjectOutputStream(new FileOutputStream(enfermedades))){
+			outputStream.writeObject(lasEnfermedades);
+			//System.out.println("Arralist saved to file: "+personas);
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}
+	
+	public Enfermedad buscarenfermedadesfile(){
+		String enfermedades = "lascitas.dat";
+		
+		try(ObjectInputStream inputStream = new ObjectInputStream(new FileInputStream(enfermedades))){
+			@SuppressWarnings("unchecked")
+			ArrayList<Enfermedad> enfermedadlist = (ArrayList<Enfermedad>) inputStream.readObject();
+			for(Enfermedad ei: enfermedadlist) {
+				//System.out.println("Name: "+ per.getNombre());
+				return ei;
+			}
+		}
+		catch (IOException | ClassNotFoundException e) {
+            e.printStackTrace();
+        }
+		return null;
+	}
+	
+	public void guardarlavacunafile() {
+        String vacunas = "lasvacunas.dat";
+        
+		try (ObjectOutputStream outputStream = new ObjectOutputStream(new FileOutputStream(vacunas))){
+			outputStream.writeObject(misVacunas);
+			//System.out.println("Arralist saved to file: "+personas);
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}
+	
+	public Vacuna buscarvacunafile() {
+		String vacunas = "lasvacunas.dat";
+		
+		try(ObjectInputStream inputStream = new ObjectInputStream(new FileInputStream(vacunas))){
+			@SuppressWarnings("unchecked")
+			ArrayList<Vacuna> vacunalist = (ArrayList<Vacuna>) inputStream.readObject();
+			for(Vacuna vi:  vacunalist) {
+				//System.out.println("Name: "+ per.getNombre());
+				return vi;
+			}
+		}
+		catch (IOException | ClassNotFoundException e) {
+            e.printStackTrace();
+        }
+		return null;
+	}
+
 }

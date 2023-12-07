@@ -145,7 +145,7 @@ public class Regdoctor extends JDialog {
 						doc.setCoddoctor(doc.generar_coddoc());
 						
 							Clinica.getInstance().addPersona(doc);
-						
+						    Clinica.getInstance().guardarpersonasfile();
 						JOptionPane.showMessageDialog(null, "Completado con exito\n"+"Su codigo unico es: "+doc.getCoddoctor(), "Resgistro", JOptionPane.INFORMATION_MESSAGE);
 						clean();
 					}

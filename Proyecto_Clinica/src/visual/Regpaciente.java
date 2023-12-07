@@ -232,6 +232,7 @@ public class Regpaciente extends JDialog {
 						///pa.setMicodhistorial(pa.generar_codp());
 						
 							Clinica.getInstance().addPersona(pa);
+							Clinica.getInstance().guardarpersonasfile();
 						
 						JOptionPane.showMessageDialog(null, "Completado con exito", "Resgistro", JOptionPane.INFORMATION_MESSAGE);
 						clean();
