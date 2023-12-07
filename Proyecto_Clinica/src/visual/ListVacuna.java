@@ -12,6 +12,7 @@ import javax.swing.table.DefaultTableModel;
 
 import Logico.Clinica;
 import Logico.Enfermedad;
+import logico.Almacen;
 
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
@@ -22,7 +23,7 @@ import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.awt.event.ActionEvent;
 
-public class ListEnfermedad extends JDialog {
+public class ListVacuna extends JDialog {
 
 	private final JPanel contentPanel = new JPanel();
 	private static DefaultTableModel model;
@@ -38,7 +39,7 @@ public class ListEnfermedad extends JDialog {
 	 */
 	public static void main(String[] args) {
 		try {
-			ListEnfermedad dialog = new ListEnfermedad();
+			ListVacuna dialog = new ListVacuna();
 			dialog.setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
 			dialog.setVisible(true);
 		} catch (Exception e) {
@@ -49,7 +50,7 @@ public class ListEnfermedad extends JDialog {
 	/**
 	 * Create the dialog.
 	 */
-	public ListEnfermedad() {
+	public ListVacuna() {
 		setBounds(100, 100, 569, 371);
 		getContentPane().setLayout(new BorderLayout());
 		contentPanel.setBorder(new EmptyBorder(5, 5, 5, 5));
@@ -64,7 +65,7 @@ public class ListEnfermedad extends JDialog {
 				panel.add(scrollPane, BorderLayout.CENTER);
 				{
 					model = new DefaultTableModel();
-					String[] columnas = {"Nombre","Código","Síntomas"};
+					String[] columnas = {"Nombre","Código","Enfermedad"};
 					model.setColumnIdentifiers(columnas);
 					table = new JTable();
 					table.addMouseListener(new MouseAdapter() {
@@ -73,7 +74,9 @@ public class ListEnfermedad extends JDialog {
 							int rowSelected = -1;
 							rowSelected = table.getSelectedRow();
 							if(rowSelected>=0){
-							   selected = Clinica.getInstance().buscarEnfermedadbyCode(table.getValueAt(rowSelected, 1).toString());
+							   btnEliminar.setEnabled(true);
+							   btnModificar.setEnabled(true);
+							   selected = Clinica.getInstance().buscarEnfermedadbyCode(table.getValueAt(rowSelected, 0).toString());
 							}
 						}
 					});
@@ -90,7 +93,6 @@ public class ListEnfermedad extends JDialog {
 			getContentPane().add(buttonPane, BorderLayout.SOUTH);
 			{
 				btnModificar = new JButton("Modificar");
-				btnModificar.setEnabled(false);
 				btnModificar.addActionListener(new ActionListener() {
 					public void actionPerformed(ActionEvent e) {
 						AddEnfermedad addEnf = new AddEnfermedad(selected);
@@ -106,15 +108,14 @@ public class ListEnfermedad extends JDialog {
 			}
 			{
 				btnEliminar = new JButton("Eliminar");
-				btnEliminar.setEnabled(false);
 				btnEliminar.addActionListener(new ActionListener() {
 					public void actionPerformed(ActionEvent arg0) {
 						int option;
 						if(selected!=null){
-							option = JOptionPane.showConfirmDialog(null, "Está seguro que desea eliminar el suministrador con código: "+selected.getCodEnferme(), "Confirmación", JOptionPane.YES_NO_OPTION);
+							option = JOptionPane.showConfirmDialog(null, "Está seguro que desea eliminar el suministrador con código: "+selected.getCodigo(), "Confirmación", JOptionPane.YES_NO_OPTION);
 							if(option == JOptionPane.OK_OPTION){
 								Clinica.getInstance().eliminarEnfermedad(selected);
-								loadEnfermedades();
+								loadVacunas();
 								btnEliminar.setEnabled(false);
 								btnModificar.setEnabled(false);
 							}
@@ -134,18 +135,17 @@ public class ListEnfermedad extends JDialog {
 				buttonPane.add(btnCancelar);
 			}
 		}
-		loadEnfermedades();
+		loadVacunas();
 	}
 	
-	public static void loadEnfermedades() {
+	public static void loadPacientes() {
 		model.setRowCount(0);
 		rows = new Object[model.getColumnCount()];
 		for (int i = 0; i < Clinica.getInstance().getLasEnfermedades().size(); i++) {
-		   rows[0] = Clinica.getInstance().getLasEnfermedades().get(i).getNombre();
-		   rows[1] = Clinica.getInstance().getLasEnfermedades().get(i).getCodEnferme();
-		   rows[2] = Clinica.getInstance().getLasEnfermedades().get(i).getSintomas();	
+		   rows[0] = Clinica.getInstance().getMisVacunas().get(i).getNombre();
+		   rows[1] = Clinica.getInstance().getMisVacunas().get(i).getCodigo();
+		   rows[2] = Clinica.getInstance().getMisVacunas().get(i).getMisEnfermadades().get(0);	
 		 model.addRow(rows);
-		 
 		}	
 	}
 
